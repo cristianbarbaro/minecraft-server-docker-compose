@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mcserver:
+    image: itzg/minecraft-server
+    container_name: mcserver
+    ports:
+      - "25565:25565"
+      - "25575:25575"
+    volumes:
+      - "./data/mcserver:/data"
+    environment:
+      EULA: "TRUE"
+      SERVER_NAME: ${SERVER_NAME}
+      ENABLE_QUERY: ${ENABLE_QUERY}
+      ENABLE_RCON: ${ENABLE_RCON}
+      QUERY_PORT: ${QUERY_PORT}
+      RCON_PORT: ${RCON_PORT}
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      DIFFICULTY: ${DIFFICULTY}
+      MAX_PLAYERS: ${MAX_PLAYERS}
+      ONLINE_MODE: ${ONLINE_MODE}
+      ALLOW_FLIGHT: ${ALLOW_FLIGHT}
+      HARDCORE: ${HARDCORE}
+      MEMORY: ${MEMORY}
+      TYPE: ${TYPE}
+      VERSION: ${VERSION}
+      WHITELIST: ${WHITELIST}
+      OPS: ${OPS}
+    restart: unless-stopped
+  mc-rcon:
+    image: itzg/rcon
+    container_name: mcrcon
+    ports:
+      - "4326:4326"
+      - "4327:4327"
+    volumes:
+      - "./data/rcon:/opt/rcon-web-admin/db"
+    restart: unless-stopped
+
+volumes:
+  mcserver:
+  mcrcon:
