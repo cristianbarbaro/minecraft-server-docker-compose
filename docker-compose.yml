@@ -36,6 +36,9 @@ services:
       - "4327:4327"
     volumes:
       - "./data/rcon:/opt/rcon-web-admin/db"
+    environment:
+      - RWA_PASSWORD=${RWA_PASSWORD}
+      - RWA_RCON_HOST=mcserver
     restart: unless-stopped
 
 volumes:
