@@ -27,8 +27,9 @@ services:
       VERSION: ${VERSION}
       WHITELIST: ${WHITELIST}
       OPS: ${OPS}
+      MOTD: ${MOTD}
     restart: unless-stopped
-  mc-rcon:
+  mcrcon:
     image: itzg/rcon
     container_name: mcrcon
     ports:
@@ -39,6 +40,7 @@ services:
     environment:
       - RWA_PASSWORD=${RWA_PASSWORD}
       - RWA_RCON_HOST=mcserver
+      - RWA_RCON_PASSWORD=${RCON_PASSWORD}
     restart: unless-stopped
 
 volumes:
