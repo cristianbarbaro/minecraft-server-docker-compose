@@ -29,6 +29,22 @@ services:
       OPS: ${OPS}
       MOTD: ${MOTD}
     restart: unless-stopped
+  mcrcon:
+    image: itzg/rcon
+    container_name: mcrcon
+    ports:
+      - "4326:4326"
+      - "4327:4327"
+    volumes:
+      - "./data/rcon:/opt/rcon-web-admin/db"
+    environment:
+      - RWA_PASSWORD=${RWA_PASSWORD}
+      - RWA_RCON_HOST=mcserver
+      - RWA_RCON_PASSWORD=${RCON_PASSWORD}
+    depends_on:
+      - mcserver
+    restart: unless-stopped
 
 volumes:
   mcserver:
+  mcrcon:
