@@ -40,6 +40,7 @@ services:
     volumes:
       - "./data/rcon:/opt/rcon-web-admin/db"
     environment:
+      - TZ="America/Argentina/Buenos_Aires"
       - RWA_PASSWORD=${RWA_PASSWORD}
       - RWA_RCON_HOST=mcserver
       - RWA_RCON_PASSWORD=${RCON_PASSWORD}
