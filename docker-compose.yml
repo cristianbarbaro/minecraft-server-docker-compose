@@ -10,6 +10,7 @@ services:
     volumes:
       - "./data/mcserver:/data"
     environment:
+      TZ: "America/Argentina/Buenos_Aires"
       EULA: "TRUE"
       SERVER_NAME: ${SERVER_NAME}
       ENABLE_QUERY: ${ENABLE_QUERY}
@@ -27,6 +28,7 @@ services:
       VERSION: ${VERSION}
       WHITELIST: ${WHITELIST}
       OPS: ${OPS}
+      SPAWN_PROTECTION: 0
       MOTD: ${MOTD}
     restart: unless-stopped
   mcrcon:
