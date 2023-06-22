@@ -46,6 +46,8 @@ services:
       - RWA_PASSWORD=${RWA_PASSWORD}
       - RWA_RCON_HOST=mcserver
       - RWA_RCON_PASSWORD=${RCON_PASSWORD}
+      - ENABLE_AUTOPAUSE=true
+      - MAX_TICK_TIME=-1
     depends_on:
       - mcserver
     restart: unless-stopped
