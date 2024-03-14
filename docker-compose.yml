@@ -9,6 +9,8 @@ services:
       - "25575:25575"
     volumes:
       - "./data/mcserver:/data"
+      - "./mods:/data/mods"
+      - "./downloads:/downloads"
     environment:
       TZ: "America/Argentina/Buenos_Aires"
       EULA: "TRUE"
@@ -31,8 +33,16 @@ services:
       WHITELIST: ${WHITELIST}
       OPS: ${OPS}
       SPAWN_PROTECTION: 0
-      MOTD: ${MOTD}
+      MOTD: "${MOTD}"
+      CF_API_KEY: "${CF_API_KEY}"
+      #CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/cave-horror-project"
+      #FETCH_TLS_HANDSHAKE_TIMEOUT: "PT40S"
+      #CF_OVERRIDES_EXCLUSIONS: mods/create_recycle*.jar
+      #CF_IGNORE_MISSING_FILES: |
+      #  mods/create_recycle_1.0.2_forge_1.20.1.jar
     restart: unless-stopped
+    networks:
+      - minecraft
   mcrcon:
     image: itzg/rcon
     container_name: mcrcon
@@ -51,7 +61,15 @@ services:
     depends_on:
       - mcserver
     restart: unless-stopped
+    networks:
+      - minecraft
 
 volumes:
-  mcserver:
+  mcserver: 
   mcrcon:
+
+networks:
+  minecraft:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 800
