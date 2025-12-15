@@ -35,6 +35,7 @@ services:
       SPAWN_PROTECTION: 0
       MOTD: "${MOTD}"
       CF_API_KEY: "${CF_API_KEY}"
+      CF_SERVER_MOD: "${CF_SERVER_MOD}"
       #CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/cave-horror-project"
       #FETCH_TLS_HANDSHAKE_TIMEOUT: "PT40S"
       #CF_OVERRIDES_EXCLUSIONS: mods/create_recycle*.jar
